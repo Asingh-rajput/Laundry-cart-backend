@@ -82,12 +82,14 @@ router.post('/login', async (req, res) => {
       console.log("JWT_SECRET not set");
       token = jwt.sign(
         { userId: user._id, email: user.email },
-        process.env.JWT_SECRET,
+        'defaultSecret',
+        { expiresIn: '1h' }
       );
     } else {
       token = jwt.sign(
         { userId: user._id, email: user.email },
         process.env.JWT_SECRET,
+        { expiresIn: '1h' }
       );
     }
 
